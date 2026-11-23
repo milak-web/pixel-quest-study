@@ -4,7 +4,19 @@
 
 No sign-in is required. This repository and its GitHub Pages website are public.
 
-Arabic study game for digital image processing, based on 45 supplied course photographs and a corrected study guide.
+Arabic study library with independent subject sections and subject-specific interactive exercises.
+
+### Information security and cryptography
+
+- 32 levels, 96 concepts, 192 question variants and a final 32-question challenge.
+- Security decisions, malware classification, identity roles, incident ordering and signature scenarios.
+- Caesar, Playfair and Hill workbenches with editable inputs and visible calculation steps, plus an educational MD5 experiment.
+- [Free practice](https://milak-web.github.io/pixel-quest-study/information-security/practice.html) is available without completing levels.
+- Based on five supplied slide decks (169 slides) and two Word documents. The organized reference and source map identify coverage and explain source contradictions. Original course files are not included.
+
+### Digital image processing
+
+Based on 45 supplied course photographs and a corrected study guide.
 
 - 16 sequential levels and 48 small concepts.
 - Interactive pixel, storage, wave, zoom, convolution, logic, geometry and filter labs.
@@ -14,11 +26,11 @@ Arabic study game for digital image processing, based on 45 supplied course phot
 
 ## Run locally
 
-Open `docs/index.html` in a modern browser, or serve `docs` over HTTP. The game is self-contained and works offline. Companion reference PDFs are in `docs/assets`.
+Open `docs/index.html` in a modern browser, or serve `docs` over HTTP. Each course is self-contained and works offline. Companion image-processing PDFs are in `docs/assets`; the security reference and source map are in `docs/information-security`. Each subject has its own save key. The image-processing save key is preserved from the original single-course site.
 
 ## Development
 
-Edit `src/`, then run `python build.py`. Run `node tests.cjs` for content, grading, progression and calculation checks. No dependency installation is required.
+Edit `src/`, then run `python build.py`. Run `node tests.cjs`, `node tests-security.cjs` and `node tests-app.cjs` for content, grading, cipher calculations and full application progression checks. No dependency installation is required.
 
 ## GitHub Pages
 

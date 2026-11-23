@@ -1,0 +1,9 @@
+from build_courses import DOCS, read, page
+
+body='''<main class="container" style="max-width:1000px;margin:auto"><a class="course-switch" href="./">← العودة إلى رحلة الأمن</a><div class="eyebrow">FREE PRACTICE</div><h1>مختبرات الأمن الحرة</h1><p class="muted">اختر التجربة وغيّر مدخلاتها. هذا التدريب مفتوح ولا يغيّر نقاطك أو تقدمك في الرحلة.</p><label>المختبر <select id="practice-select" style="font:inherit;padding:12px;color:#eef0ff;background:#252a3f;max-width:100%"></select></label><h2 id="practice-title"></h2><div id="practice-app"></div><p id="practice-status" role="status"></p><a class="btn secondary" href="reference.html">افتح المرجع المنظم</a></main>'''
+base='''const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const rich=esc;const state={active:{level:0,step:0}};function toast(t){$('#practice-status').textContent=t;}'''
+matrix=read('labs.js').split('\n')[0]
+init='''const choices=[];const seen=new Set();LEVELS.forEach((l,i)=>{if(!seen.has(l.lab)){seen.add(l.lab);choices.push([i,l.title]);}});$('#practice-select').innerHTML=choices.map(([i,t])=>`<option value="${i}">${esc(t)}</option>`).join('');function showPractice(){const i=Number($('#practice-select').value);state.active={level:i,step:0};$('#practice-title').textContent=LEVELS[i].title;$('#practice-app').innerHTML=labHTML(LEVELS[i].lab);$('#practice-status').textContent='';}$('#practice-select').addEventListener('change',showPractice);showPractice();'''
+js='\n;\n'.join([base,read('security-crypto.js'),read('security-content.js'),read('logic.js'),matrix,read('security-labs.js'),init])
+(DOCS/'information-security'/'practice.html').write_text(page('Pixel Quest | مختبرات الأمن الحرة',body,js),encoding='utf-8')
+print('Built free security practice workbench.')

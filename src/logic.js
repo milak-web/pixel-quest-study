@@ -1,6 +1,7 @@
 const QuestRules=(()=>{
  const normalize=s=>String(s).trim().replace(/[٠-٩]/g,c=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(c))).replace(/[۰-۹]/g,c=>String('۰۱۲۳۴۵۶۷۸۹'.indexOf(c))).replace(/[٫،]/g,'.').replace(/−/g,'-').replace(/\s/g,'');
  function grade(q,value){
+  if(q.type==='text'){const tidy=v=>normalize(v).toUpperCase().replace(/[^A-Z0-9-]/g,'');return tidy(value)!==''&&tidy(value)===tidy(q.answer);}
   if(q.type==='number'){const n=Number(normalize(value));return normalize(value)!==''&&Number.isFinite(n)&&Math.abs(n-q.answer)<=(q.tolerance||1e-8);}
   if(q.type==='order')return Array.isArray(value)&&value.length===q.answer.length&&value.every((v,i)=>v===q.answer[i]);
   return Number.isInteger(value)&&value===q.answer;
